@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment { 
-        TEST_PORT="8088"
-    }
     stages {
         stage('Build') {
             steps {
@@ -11,8 +8,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker run -d --rm --name test-${BUILD_ID} -p ${env.TEST_PORT}:80 test'
-                sh 'curl -s localhost:${env.TEST_PORT} |grep hola'
+                sh 'docker run -d --rm --name test-${BUILD_ID} -p 8088:80 test'
+                sh 'curl -s localhost:8088 |grep hola'
             }
         }
         stage('Deploy') {
