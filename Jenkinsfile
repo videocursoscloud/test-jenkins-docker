@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment { 
+        TEST_PORT="8088"
+    }
     stages {
         stage('Build') {
             steps {
