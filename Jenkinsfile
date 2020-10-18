@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'make build'
+                sh 'docker build -t test .'
             }
         }
         stage('Test') {
