@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'make test'
+                sh 'docker run --rm -t test --name test-${BUILD_ID} -d -p 8088:80 test'
+                sh 'curl -s localhost:8080 |grep hola2'
             }
         }
         stage('Deploy') {
@@ -17,5 +18,10 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        post {
+          always {
+              sh 'docker rm test-${BUILD_ID} -f'
+          }
+       }
     }
 }
