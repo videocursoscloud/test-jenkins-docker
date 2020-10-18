@@ -18,10 +18,11 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        post {
-          always {
-              sh 'docker rm test-${BUILD_ID} -f'
-          }
-       }
     }
+    post {
+      always {
+        sh 'docker rm test-${BUILD_ID} -f'
+     }
+   }
+
 }
