@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'docker run -d --rm --name test-${BUILD_ID} -p 8088:80 test'
-                sh 'curl -s localhost:8080 |grep hola2'
+                sh 'curl -s localhost:8080 |grep hola'
             }
         }
         stage('Deploy') {
