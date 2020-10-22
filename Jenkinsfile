@@ -21,6 +21,7 @@ pipeline {
     post {
       always {
         sh 'docker rm test-${BUILD_ID} -f'
+        sh 'docker image rm test -f'
      }
    }
 
